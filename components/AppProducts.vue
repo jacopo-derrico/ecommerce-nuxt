@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="product in allProducts" :key="product.id">
+            <li v-for="product in productsStore.gProductsList" :key="product.name" :product="product" >
                 <NuxtLink :to="{ name: 'products-id', params: { id: product.id } }" @click="selectProduct(product)">{{
                     product.title }}</NuxtLink>
             </li>
@@ -13,14 +13,6 @@
     import { useProductsStore } from '~/store/productsApi';
     import { useRouter } from 'nuxt/app';
 
-    const router = useRouter();
-    const allProductsStore = useProductsStore();
-    const allProducts = computed(() => allProductsStore.allProducts);
-
-    const selectProduct = (product) => {
-        let fetchId = allProducts.find((prod) => prod.id === product.id);
-
-        allProductsStore.singleProduct.push(fetchId);
-        router.push(`/products/${product.id}`);
-    };
+    const productsStore = useProductsStore();
+    productsStore.aGetAllProducts();
 </script>

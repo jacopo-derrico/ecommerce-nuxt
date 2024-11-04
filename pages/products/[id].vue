@@ -1,11 +1,8 @@
 <template>
     <div>
-        <div v-if="singleProduct">
-            <h1>{{ singleProduct.title }}</h1>
-            <p>{{ singleProduct.price }}</p>
-        </div>
-        <div v-else>
-            <p>Loading...</p>
+        <div>
+            <h1>{{ product?.title }}</h1>
+            <p>{{ product?.price }}</p>
         </div>
     </div>
 </template>
@@ -16,10 +13,18 @@
     import { ref } from 'vue';
 
     const route = useRoute();
-    const productId = await ref(route.params.id);
-    const allProductsStore = useProductsStore();
+    const product = ref(null);
 
-    const singleProduct = computed(() => {
-        return allProductsStore.singleProduct;
-    });
+    onMounted(async () => {
+        const productsStore = useProductsStore();
+        const productId = route.params.id;
+        productsStore.aGetProductById(productId);
+        // console.log(productsStore.gProduct)
+
+        watch(() => productsStore.gProduct, (newValue) => {
+            product.value = newValue;
+        }, { immediate: true });
+    })
+
+
 </script>
