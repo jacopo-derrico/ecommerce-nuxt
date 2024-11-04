@@ -12,7 +12,9 @@ export const useProductsStore = defineStore({
     id: 'products',
     state: () => ({
         productsList: [],
-        product: null
+        product: null,
+        shoppingCart: [],
+        wishlist: []
     }),
     actions: {
         async aGetAllProducts() {
@@ -34,7 +36,37 @@ export const useProductsStore = defineStore({
             .catch((error) => {
                 console.log(error);
             })
-        }
+        },
+        aAddToShoppingCart(product) {
+            let shoppingCart = localStorage.getItem('shopping-cart');
+            if (shoppingCart) {
+                shoppingCart = JSON.parse(shoppingCart);
+            } else {
+                localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+            }
+            const productExist = shoppingCart.find(el => el === product.id);
+            if (productExist !== -1) {
+                return {code: 400, msg: 'Product already in cart'};
+            }
+            shoppingCart.push(product.id);
+            localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+            return {code: 200, msg: 'Product added to cart'};
+        },
+        aAddToWishlist(product) {
+            let wishlist = localStorage.getItem('wishlist');
+            if (wishlist) {
+                wishlist = JSON.parse(wishlist);
+            } else {
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            const productExist = wishlist.find(el => el === product.id);
+            if (productExist) {
+                return {code: 400, msg: 'Product already in wishlist'};
+            }
+            wishlist.push(product.id);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            return {code: 200, msg: 'Product added to wishlist'};
+        },
     },
     getters: {
         gProductsList: (state) => state.productsList,
