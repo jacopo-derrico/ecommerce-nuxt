@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-5/6 mx-auto my-32">
+    <div class="flex w-5/6 mx-auto my-20">
         <div class="w-1/2 h-1/2">
             <img :src="product?.image" alt="">
         </div>
