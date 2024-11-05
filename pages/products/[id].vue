@@ -41,6 +41,12 @@
         }
     })
 
-
+    useSeoMeta({
+        title: product?.title,
+        ogTitle: product?.title,
+        description: product?.description,
+        ogDescription: product?.description,
+        ogImage: product?.image,
+    })
 
 </script>
