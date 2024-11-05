@@ -1,8 +1,16 @@
 <template>
-    <div>
-        <div>
+    <div class="flex w-5/6 mx-auto my-32">
+        <div class="w-1/2 h-1/2">
+            <img :src="product?.image" alt="">
+        </div>
+        <div class="w-1/2">
             <h1>{{ product?.title }}</h1>
-            <p>{{ product?.price }}</p>
+            <h5 class="my-5">{{ product?.price }}€</h5>
+            <p>{{ product?.description }}</p>
+            <div class="flex gap-10 mt-10">
+                <q-btn color="primary" label="Add to cart" @click="addToCart(product)" />
+                <q-btn color="primary" label="<3" @click="addToWishlist(product)" />
+            </div>
         </div>
     </div>
 </template>
@@ -24,7 +32,15 @@
         watch(() => productsStore.gProduct, (newValue) => {
             product.value = newValue;
         }, { immediate: true });
+
+        let addToCart = (product) => {
+            let result = productsStore.aAddToShoppingCart(product);
+        }
+        let addToWishlist = (product) => {
+            let result = productsStore.aAddToWishlist(product);
+        }
     })
+
 
 
 </script>
