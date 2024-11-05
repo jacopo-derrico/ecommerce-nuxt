@@ -1,1 +1,4 @@
+User-agent: *
+Allow: /
 
+Sitemap: https://e-commerce-ssr.netlify.app/sitemap.xml
