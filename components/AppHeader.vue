@@ -4,7 +4,7 @@
             Logo
         </div>
         <div>
-            <a @click.prevent="$router.push('/')" class="cursor-pointer text-bold hover:text-blue-700">Home</a>
+            <NuxtLink to="/" class="cursor-pointer text-bold hover:text-blue-700">Home page</NuxtLink>
         </div>
         <div>
             <div>
