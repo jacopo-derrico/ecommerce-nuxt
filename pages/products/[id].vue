@@ -29,7 +29,7 @@
         productsStore.aGetProductById(productId);
         // console.log(productsStore.gProduct)
 
-        watch(() => productsStore.gProduct, (newValue) => {
+        watch(() => productsStore.product, (newValue) => {
             product.value = newValue;
         }, { immediate: true });
 

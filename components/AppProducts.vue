@@ -1,8 +1,9 @@
 <template>
     <div>
         <div class="flex w-11/12 mx-auto justify-between">
-            <q-card class="my-card m-1 w-1/6 h-[500px] flex flex-col justify-between p-2 hover:shadow-blue-700 hover:shadow-md"
-                v-for="product in productsStore.gProductsList" :key="product.name" :product="product">
+            <q-card
+                class="my-card m-1 w-1/6 h-[500px] flex flex-col justify-between p-2 hover:shadow-blue-700 hover:shadow-md"
+                v-for="product in productsStore.productsList" :key="product.name" :product="product">
                 <figure class="h-[250px] w-fit self-center overflow-hidden">
                     <img class="w-full h-[250px]" :src="product.image"></img>
                 </figure>
@@ -67,7 +68,7 @@
 </script>
 
 <style scoped>
-    .my-card:hover img{
+    .my-card:hover img {
         transform: scale(1.1);
         transition: transform 330ms ease-in-out;
     }
