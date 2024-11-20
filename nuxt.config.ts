@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: [
     '@pinia/nuxt',
-    'nuxt-quasar-ui',
+    // 'nuxt-quasar-ui',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots'
