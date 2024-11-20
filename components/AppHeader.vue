@@ -3,8 +3,10 @@
         <div>
             Logo
         </div>
-        <div>
+        <div class="flex gap-3">
             <NuxtLink to="/" class="cursor-pointer text-bold hover:text-blue-700">Home page</NuxtLink>
+            <NuxtLink v-if="!authStore.authenticated" to="/login" class="cursor-pointer text-bold hover:text-blue-700">Login</NuxtLink>
+            <NuxtLink v-else to="/my-account" class="cursor-pointer text-bold hover:text-blue-700">My account</NuxtLink>
         </div>
         <div>
             <div>
@@ -19,7 +21,10 @@
 
 <script setup>
   import { useProductsStore } from '~/store/productsApi';
+  import { useAuthStore } from '~/store/auth';
   const productsStore = useProductsStore();
+  const authStore = useAuthStore();
+
 
   const cart = productsStore.shoppingCart;
   const wishlist = productsStore.wishlist;
