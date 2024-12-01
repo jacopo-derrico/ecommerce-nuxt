@@ -1,21 +1,18 @@
 <template>
-    <div class="text-center flex justify-center items-center h-screen">
+    <div class="flex justify-center items-center">
         <div class="w-1/4">
-
-            <q-form class="q-gutter-md">
-                <q-input filled v-model="authStore.username" label="Your username *" lazy-rules
-                    :rules="[ val => val && val.length > 0 || 'Please type you username']" hint="emilys"/>
-
-                <q-input filled type="password" v-model="authStore.password" label="Your password *" lazy-rules
-                    :rules="[ val => val && val.length > 0 || 'Please type your password']" hint="emilyspass"/>
-
+            <form class="flex flex-col">
+                <label for="username">Username</label>
+                <input name="username" type="text" v-model="authStore.username" class="border rounded-lg mb-3" required/>
+                <label for="password">Password</label>
+                <input type="password" v-model="authStore.password" class="border rounded-lg mb-3" required/>
                 <div>
-                    <q-btn @click.prevent="login" label="Submit" type="submit" color="primary" />
-                    <NuxtLink to="/">
-                        <q-btn label="Cancel" type="reset" color="deep-orange" flat class="q-ml-sm" />
+                    <button @click.prevent="login" type="submit" class="text-white bg-blue-600 px-5 py-1 rounded-lg">Login</button>
+                    <NuxtLink to="/" class="text-pink-600">
+                        Cancel
                     </NuxtLink>
                 </div>
-            </q-form>
+            </form>
 
         </div>
     </div>
