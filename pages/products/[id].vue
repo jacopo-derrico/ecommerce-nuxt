@@ -1,11 +1,11 @@
 <template>
-    <div class="flex w-5/6 mx-auto my-20">
-        <div class="w-1/2 h-1/2">
+    <div class="flex flex-col md:flex-row w-5/6 mx-auto my-20">
+        <div class="md:w-1/2 mb-10 md:me-16">
             <img :src="product?.image" alt="">
         </div>
-        <div class="w-1/2">
-            <h1>{{ product?.title }}</h1>
-            <h5 class="my-5">{{ product?.price }}€</h5>
+        <div class="md:w-1/2 ">
+            <h1 class="text-2xl font-bold">{{ product?.title }}</h1>
+            <h5 class="my-5 font-bold text-blue-600">{{ product?.price }}€</h5>
             <p>{{ product?.description }}</p>
             <div class="flex gap-10 mt-10">
                 <q-btn color="primary" label="Add to cart" @click="addToCart(product)" />
