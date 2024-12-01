@@ -49,13 +49,13 @@
                 <!-- actual mobile menu -->
                 <div :class="{'block': isMobileOpen, 'hidden': !isMobileOpen}" class="absolute top-20 left-0 right-0 py-10 bg-blue-600 font-medium">
                     <div class="flex flex-col items-center gap-3 ">
-                        <NuxtLink to="/"
+                        <NuxtLink to="/" @click="isMobileOpen = !isMobileOpen"
                             class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
                             Home page</NuxtLink>
-                        <NuxtLink v-if="!authStore.authenticated" to="/login"
+                        <NuxtLink v-if="!authStore.authenticated" to="/login" @click="isMobileOpen = !isMobileOpen"
                             class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
                             Login</NuxtLink>
-                        <NuxtLink v-else to="/my-account"
+                        <NuxtLink v-else to="/my-account" @click="isMobileOpen = !isMobileOpen"
                             class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
                             My account</NuxtLink>
                     </div>
