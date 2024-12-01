@@ -4,7 +4,9 @@
             <div>
                 E-commerce SSR
             </div>
-            <div class="flex items-center gap-3 h-full font-medium">
+
+            <!-- lg menu -->
+            <div class="hidden lg:flex items-center gap-3 h-full font-medium">
                 <NuxtLink to="/"
                     class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
                     Home page</NuxtLink>
@@ -15,6 +17,8 @@
                     class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
                     My account</NuxtLink>
             </div>
+
+            <!-- wishlist & cart -->
             <div class="flex gap-3">
                 <div class="relative">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -36,7 +40,28 @@
                         {{ cart.length }}
                     </span>
                 </div>
+                <!-- mobile menu button -->
+                <button @click="isMobileOpen = !isMobileOpen" class="w-3">
+                    <svg :class="{'block': !isMobileOpen, 'hidden': isMobileOpen}" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                    <svg :class="{'block': isMobileOpen, 'hidden': !isMobileOpen}" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                </button>
+
+                <!-- actual mobile menu -->
+                <div :class="{'block': isMobileOpen, 'hidden': !isMobileOpen}" class="absolute top-20 left-0 right-0 py-10 bg-blue-600 font-medium">
+                    <div class="flex flex-col items-center gap-3 ">
+                        <NuxtLink to="/"
+                            class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
+                            Home page</NuxtLink>
+                        <NuxtLink v-if="!authStore.authenticated" to="/login"
+                            class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
+                            Login</NuxtLink>
+                        <NuxtLink v-else to="/my-account"
+                            class="cursor-pointer flex items-center h-full hover:border-b-4 hover:border-b-white hover:mb-[-4px]">
+                            My account</NuxtLink>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -50,4 +75,6 @@
 
     const cart = productsStore.shoppingCart;
     const wishlist = productsStore.wishlist;
+
+    let isMobileOpen = ref(false);
 </script>
